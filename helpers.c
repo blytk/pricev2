@@ -95,11 +95,7 @@ int get_input(void)
     mvprintw(14, (col-strlen(exit_msg))/2, "%s", exit_msg);
     attroff(A_UNDERLINE);
 
-
-    //getstr(user_input);
-    //mvprintw(LINES -2, 0, "You Entered: %s", user_input);
-    //refresh();      
-
+    
     startx = (40 - WIDTH) / 2;
     starty = (20 - HEIGHT) / 2;
 

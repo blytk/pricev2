@@ -8,7 +8,7 @@
 #include "helpers.h"
 
 int check_api_status(void);
-int fetch_data(char* token);
+int fetch_data(void);
 static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
 int historic_price(void);
 int list_of_coins(void);
@@ -97,8 +97,27 @@ int main(int argc, char* argv[])
             historic_price();
             goto start;
         }
+        if (user_input == 4)
+        {
+            search();
+            goto start;
+        }
+        if (user_input == 5)
+        {
+            fetch_data();
+            goto start;
+        }
+        if (user_input == 6)
+        {
+            clear();
+            endwin();
+            system("clear");
+            return 0;
+        }
     }
-    return 0;
+    clear();
+    endwin();
+    return 1;
 }
 
 
@@ -325,7 +344,11 @@ int historic_price(void)
 
     char *token;
     token = get_input_token();
-
+    if (token == 1)
+    {
+        return 1;
+    }
+    
     char *date;
     date = get_input_date();
 
@@ -340,9 +363,7 @@ int historic_price(void)
 
     
     response = curl_easy_perform(handle);
-
-   
-    
+ 
     if (response != CURLE_OK)
     {
         fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(response));
@@ -356,10 +377,10 @@ int historic_price(void)
 
     if (http_code != 200 || response == CURLE_ABORTED_BY_CALLBACK)
     {
-        system("clear"); // system("clear") clears the terminal
+        clear();
         getmaxyx(stdscr, row, col);
-        system("clear");
         mvprintw(row / 2, col / 4, "%s", "THAT TOKEN DOESN'T EXIST OR THERE ARE NO VALUES FOR THAT SPECIFIC DATE, PLEASE TRY AGAIN");
+        sleep(2);
     }  
     else
     {
@@ -370,9 +391,9 @@ int historic_price(void)
         if (buffer == NULL)
         {
             getmaxyx(stdscr, row, col);
-            system("clear");
+            clear();
             mvprintw(row / 2, col / 2, "%s", "Pointer error");
-            sleep(3);
+            sleep(2);
             return 1;
         }
         strcpy(buffer, chunk.memory);
@@ -383,10 +404,10 @@ int historic_price(void)
         char *find = strstr(buffer, target);
         if (find == NULL)
         {
-            system("clear"); // system("clear") clears the terminal
+            clear();
             getmaxyx(stdscr, row, col);
             mvprintw(row / 2, col / 4, "%s", "THAT TOKEN DOESN'T EXIST OR THERE ARE NO VALUES FOR THAT SPECIFIC DATE, PLEASE TRY AGAIN");
-            sleep(3);
+            sleep(2);
             return 1;
         }
         char price[20];
@@ -409,9 +430,16 @@ int historic_price(void)
         double price_ = atof(price);           
         //printf("%f\n", price_);
         
-        system("clear");                    
+        clear();       
         getmaxyx(stdscr, row, col);
         mvprintw(row / 2, col / 4, "The price of %s, on the date %s, was $%.4f\n", token, date, price_);
+        mvprintw(row / 2 + 2, col / 4, "Press any key to go back to the main menu");
+        
+        refresh();
+        noecho();
+        getch();
+        echo();
+        //sleep(5);
         free(buffer);
     }
     
@@ -419,10 +447,177 @@ int historic_price(void)
     curl_easy_cleanup(handle);
     free(chunk.memory);    
     curl_global_cleanup();
-
     return 0;
 
 }
+
+
+int search(void)
+{
+    FILE *file;
+    file = fopen("list.txt", "r");
+    if (file == NULL)
+    {
+        clear();
+        mvprintw(row / 2, col / 4, "Error while creating the file");
+        refresh();
+        sleep(2);
+
+        return 1;
+    }
+    char buffer[64];
+    char *substring_to_search_for = get_input_search();
+
+    int index = 1;
+    int index_r = 1;
+
+    int x = 8;
+            
+    clear();
+    while (fgets(buffer, 64, file) != NULL)
+    {
+        if (strstr(buffer, substring_to_search_for) != NULL)
+        {
+            mvprintw(index, col / x, "%i -> %s", index_r, buffer);
+            refresh();
+            index = index + 1;
+            index_r = index_r + 1;
+            if (index == 15)
+            {
+                if (x == 8)
+                {
+                    x = 2;
+                    index = 1;
+                }
+                else if (x == 2)
+                {
+                    x = 8;
+                    mvprintw(index + 2 , col / 4, "Press a key to continue printing the list");
+                    index = 1;
+                    noecho();
+                    getch();
+                    clear();
+                    index = 1;
+                    echo();
+                }
+            }
+        }
+    }
+
+    mvprintw(index + 2, col / 4, "Press a key to finish and return to the main menu");
+    getch();
+
+    fclose(file);
+    index = 0;
+    return  0;
+}
+
+
+
+int fetch_data(void)
+{
+    char PRICE[15];
+    
+    char* token_ = get_input_token();
+
+    char url[200];
+    sprintf(url, "https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd", token_);
+    //sprintf takes a char variable to write on (could be a char* I guess), and replaces the %s with the value of token
+    //as long as the id is correct, it gets the data
+    // I need to add a control, probably not here, to see if the response is 200 OK or whatever, or not
+    // The resulting url will be the target for libcurl 
+    //printf("%s\n", url);
+
+    CURL *handle = curl_easy_init();
+    CURLcode response;
+    //FILE *file;
+    //file = fopen("test.txt", "w");
+
+    struct MemoryStruct chunk;
+    
+    chunk.memory = malloc(1);
+    chunk.size = 0;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    curl_easy_setopt(handle, CURLOPT_URL, url);
+    curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+    curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)&chunk);
+    curl_easy_setopt(handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");    
+
+    //now we are going to fread the written and received body response and check something
+    //printf("%ln", buffer);
+
+    // Here goes the curl
+    response = curl_easy_perform(handle);
+
+
+    if (response != CURLE_OK)
+    {
+        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(response));
+        curl_easy_cleanup(handle);
+        free(chunk.memory);
+        curl_global_cleanup();
+        mvprintw(row / 2, col / 4, "Couldn't find the token you are looking for");
+        sleep(2);
+        return 1;
+    }
+    else
+    {
+        unsigned long cs = (unsigned long)chunk.size;
+        if (cs > 15)
+        {
+            //printf("\nWe have a token\n");
+            //Somehow we seem to have a string with the response of the body (name of the token, current price "usd:1565.52")
+            // I'm going to loop through the string and copy what I need into a new string?
+
+            for (int i = 0, k = 0; i < strlen(chunk.memory); i++)
+            {
+                if ((chunk.memory[i] > 47 && chunk.memory[i] < 58) || chunk.memory[i] == 46)
+                {
+                    PRICE[k] = chunk.memory[i];
+                    //printf("%c\n", PRICE[k]);
+                    k = k + 1;
+                }
+            }
+            
+            //PRICE[strlen(PRICE)] = "/0"; 
+            //double price_double = atof(PRICE);
+            //PRICE = atof(PRICE);
+            //HERE WE PRINT THE FINAL RESULT
+            clear();
+            double PRICE_ = atof(PRICE);           
+            //printf("THE CURRENT PRICE OF %s IS $%.4f\n", token, PRICE_);
+            mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token_, PRICE_);
+            mvprintw(row / 2 + 2, col / 4, "Press any key to go back to the main menu");
+            getch();
+
+            //for (int i = 0; i < strlen(PRICE); i++)
+            //{
+            //    PRICE[i] = "";
+            //}
+
+            //printf("%s\n", chunk.memory);
+            //printf("%s\n", PRICE);
+        }
+        else
+        {
+            clear();
+            mvprintw(row / 2, col / 4, "WE HAVEN'T FOUND THE TOKEN YOU WERE LOOKING FOR, PLEASE TRY AGAIN");
+            refresh();
+            sleep(5);
+        }
+        //The PRICE char array will be "resetted" after every iteration
+    }
+
+    // I think that if chunk.size is bigger than 2 we get a correct return
+    
+    curl_easy_cleanup(handle);
+    free(chunk.memory);
+    curl_global_cleanup();
+    return 5;   
+}
+
 
 
 static size_t
@@ -462,11 +657,8 @@ int get_input(void)
 
     initscr();
     clear();
-    noecho();
-    cbreak();
-
-////
-    
+    //noecho();
+    cbreak(); 
         
     if (has_colors() == FALSE)
     {
@@ -512,9 +704,6 @@ int get_input(void)
     attroff(A_UNDERLINE);
 
 
-    //getstr(user_input);
-    //mvprintw(LINES -2, 0, "You Entered: %s", user_input);
-    //refresh();      
 
     startx = (40 - WIDTH) / 2;
     starty = (20 - HEIGHT) / 2;
@@ -560,20 +749,6 @@ int get_input(void)
 }
    
      
-   
-    // scanf("%s", user_input); //Here, scanf knows it's going to receive a string (char*), that char* is user_input. Then, it's going to modify the received variable with the user input
-    // We should probably should convert all input to lowercase, I don't remember how
-        /*
-    lowercase(user_input);
-    return user_input;
-    */
-/*
-   return 0;
-    // In C, we can't compare directly two strings, because a string is actually a char*, which is a pointer (the same 2 strings will have different addresses, and thus will never be the same) 
-}
-*/
-
-
 char* get_input_date(void)
 {
     do 
@@ -601,11 +776,11 @@ char* get_input_token(void)
     clear();
     getmaxyx(stdscr, row, col);
     mvprintw(row / 2, col / 4, "%s", "Please, enter the token you are looking for: ");
-    refresh();
     
     getstr(token);
     clear();
     mvprintw(row / 2, col / 4, "You have entered %s", token);
+
     refresh();
     sleep(2);
     lowercase(token);
@@ -613,28 +788,17 @@ char* get_input_token(void)
     return token;
 }
 
-    /*
-    char* get_input_token(void)
-{
-    printf("\n");
-    system("clear");
-    printf("Please, enter the token you are looking for: ");
-    scanf("%s", token);
-    lowercase(token);
-
-    return token;
-}
-    */
 
 char* get_input_search(void)
 {
-    printf("\n");
-    system("clear");
-    printf("Please, enter the part of the name of the token you are looking for in order to display possible matches on your screen.\nDepending on the OS you are using, the first result displayed might be an echo from your terminal\nIt is recommended you execute 'list' first in order to have an updated working list of tokens: ");
-    scanf("%s", substring_to_search_for);
+    
+    clear();
+    getmaxyx(stdscr, row, col);
+    mvprintw(row / 2, col / 4, "Please, enter the part of the name of the token you are looking for: ");
+
+    getstr(substring_to_search_for);
     lowercase(substring_to_search_for);
 
-    printf("\n\n");
     return substring_to_search_for;
 }
 

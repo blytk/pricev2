@@ -344,6 +344,7 @@ int historic_price(void)
 
     char *token;
     token = get_input_token();
+
     if (token == 1)
     {
         return 1;
@@ -518,10 +519,14 @@ int fetch_data(void)
 {
     char PRICE[15];
     
-    char* token_ = get_input_token();
+    char* token = get_input_token();
+    if (token == 1)
+    {
+        return 1;
+    }
 
     char url[200];
-    sprintf(url, "https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd", token_);
+    sprintf(url, "https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd", token);
     //sprintf takes a char variable to write on (could be a char* I guess), and replaces the %s with the value of token
     //as long as the id is correct, it gets the data
     // I need to add a control, probably not here, to see if the response is 200 OK or whatever, or not
@@ -588,7 +593,7 @@ int fetch_data(void)
             clear();
             double PRICE_ = atof(PRICE);           
             //printf("THE CURRENT PRICE OF %s IS $%.4f\n", token, PRICE_);
-            mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token_, PRICE_);
+            mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token, PRICE_);
             mvprintw(row / 2 + 2, col / 4, "Press any key to go back to the main menu");
             getch();
 
@@ -772,7 +777,6 @@ char* get_input_date(void)
 
 char* get_input_token(void)
 {
-
     clear();
     getmaxyx(stdscr, row, col);
     mvprintw(row / 2, col / 4, "%s", "Please, enter the token you are looking for: ");
@@ -781,11 +785,33 @@ char* get_input_token(void)
     clear();
     mvprintw(row / 2, col / 4, "You have entered %s", token);
 
-    refresh();
-    sleep(2);
-    lowercase(token);
+    //search list.txt
+    FILE* file;
+    file = fopen("list.txt", "r");
+    char buffer[64];
+    
+    while (fgets(buffer, 64, file) != NULL)
+    {
+        
+        if (strstr(buffer, token) != NULL)
+        {
+            if (strlen(token) == strlen(buffer + 1))
+            { 
+                lowercase(token);
+                fclose(file);
 
-    return token;
+                return token;
+            }
+        }
+    }
+    clear();
+    getmaxyx(stdscr, row, col);
+    mvprintw(row / 2, col / 4, "%s", "The token you have entered hasn't been found in list.txt");
+    mvprintw(row / 2 + 2, col / 4, "%s", "Please try again or update list.txt from the main menu");
+    refresh();
+    sleep(5);
+    
+    return 1;
 }
 
 

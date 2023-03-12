@@ -1,2 +1,2 @@
-price: price.c helpers.c
-	gcc price.c helpers.c -lcurl -lncurses -o price
+price: price.c
+	gcc price.c -lcurl -lmenu -lncurses -o price

@@ -5,8 +5,6 @@
 #include <ctype.h>
 #include <ncurses.h>
 
-#include "helpers.h"
-
 int check_api_status(void);
 int fetch_data(void);
 static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
@@ -22,7 +20,7 @@ char* get_input_search(void);
 int print_title(void);
 
 #define WIDTH 24
-#define HEIGHT 14
+#define HEIGHT 10
 
 int startx = 0;
 int starty = 0;
@@ -69,7 +67,7 @@ int main(int argc, char* argv[])
     }
 
     print_title();
-    //sleep(2);
+    sleep(2);
 
     if (argc == 2)
     {
@@ -623,8 +621,6 @@ int fetch_data(void)
     return 5;   
 }
 
-
-
 static size_t
 WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
@@ -739,7 +735,7 @@ int get_input(void)
                     return choice;
                     break;
                 default:
-                    mvprintw(24, 0, "Character pressed is = %3d Hopefully it can be printed as '%c'", c, c);
+                    //mvprintw(24, 0, "Character pressed is = %3d Hopefully it can be printed as '%c'", c, c);
                     refresh();
                     break;
             }
@@ -809,7 +805,7 @@ char* get_input_token(void)
     mvprintw(row / 2, col / 4, "%s", "The token you have entered hasn't been found in list.txt");
     mvprintw(row / 2 + 2, col / 4, "%s", "Please try again or update list.txt from the main menu");
     refresh();
-    sleep(5);
+    sleep(3);
     
     return 1;
 }

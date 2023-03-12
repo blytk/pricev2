@@ -1,57 +1,56 @@
-#include <curses.h>
-#include <menu.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <SDL2/SDL.h>
+#include "audio.h"
+#include "audio.c"
 
-#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
-#define CTRLD 	4
 
-char *choices[] = {
-                        "Choice 1",
-                        "Choice 2",
-                        "Choice 3",
-                        "Choice 4",
-                        "Exit",
-                  };
+int main(void)
+{
+    /* Initialize only SDL Audio on default device */
+    if(SDL_Init(SDL_INIT_AUDIO) < 0)
+    {
+        return 1; 
+    }
 
-int main()
-{	ITEM **my_items;
-	int c;				
-	MENU *my_menu;
-	int n_choices, i;
-	ITEM *cur_item;
-	
-	
-	initscr();
-	cbreak();
-	noecho();
-	keypad(stdscr, TRUE);
-	
-	n_choices = ARRAY_SIZE(choices);
-	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+    /* Init Simple-SDL2-Audio */
+    initAudio();
 
-	for(i = 0; i < n_choices; ++i)
-	        my_items[i] = new_item(choices[i], choices[i]);
-	my_items[n_choices] = (ITEM *)NULL;
+    /* Play music and a sound */
+    //playMusic("music/highlands.wav", SDL_MIX_MAXVOLUME);
+    //playSound("audio/bark.wav", SDL_MIX_MAXVOLUME / 2);
+	/*
+    /* While using delay for showcase, don't actually do this in your project */
+    //SDL_Delay(1000);
 
-	my_menu = new_menu((ITEM **)my_items);
-	mvprintw(LINES - 2, 0, "F1 to Exit");
-	post_menu(my_menu);
-	refresh();
+    /* Override music, play another sound */
+    //playMusic("music/road.wav", SDL_MIX_MAXVOLUME);
+    //SDL_Delay(1000);
 
-	while((c = getch()) != KEY_F(1))
-	{   switch(c)
-	    {	case KEY_DOWN:
-		        menu_driver(my_menu, REQ_DOWN_ITEM);
-				break;
-			case KEY_UP:
-				menu_driver(my_menu, REQ_UP_ITEM);
-				break;
-		}
-	}	
+    /* Pause audio test */
+    //pauseAudio();
+    //SDL_Delay(1000);
+	//unpauseAudio();
 
-	free_item(my_items[0]);
-	free_item(my_items[1]);
-	free_menu(my_menu);
-	endwin();
+    //playSound("sounds/door2.wav", SDL_MIX_MAXVOLUME / 2);
+    //SDL_Delay(2000);
+
+    /* Caching sound example, create, play from Memory, clear */
+
+    Audio * sound = createAudio("audio/bark.wav", 0, SDL_MIX_MAXVOLUME / 2);
+    playSoundFromMemory(sound, SDL_MIX_MAXVOLUME);
+    SDL_Delay(2000);
+
+    //Audio * music = createAudio("music/highlands.wav", 1, SDL_MIX_MAXVOLUME);
+    //playMusicFromMemory(music, SDL_MIX_MAXVOLUME);
+    //SDL_Delay(2000);
+
+    /* End Simple-SDL2-Audio */
+    endAudio();
+
+    /* Important to free audio after ending Simple-SDL2-Audio because they might be referenced still */
+    freeAudio(sound);
+    //freeAudio(music);
+
+    SDL_Quit();
+
+    return 0;
 }

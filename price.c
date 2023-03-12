@@ -60,22 +60,14 @@ int row, col;
 
 int main(int argc, char* argv[])
 {
-    if (argc > 2)
-    {
-        printf("You can execute the program without command line arguments, or with a single one: the name of the cryptocurrency you are looking for\n");
-        return 1;
-    }
+    //print_title();
+    //sleep(2);
 
-    print_title();
-    sleep(2);
-
-    if (argc == 2)
-    {
-    //    fetch_data(argv[1]);
-    }
-
+    /* Initialize only SDL Audio on default device */
+       
     while(1)
     {
+
         start:
         int user_input;
         user_input = get_input();
@@ -492,9 +484,16 @@ int search(void)
                 {
                     x = 8;
                     mvprintw(index + 2 , col / 4, "Press a key to continue printing the list");
+                    mvprintw(index + 4 , col / 4, "Press q to exit");
                     index = 1;
                     noecho();
-                    getch();
+                    char c = getch();
+                    if (c == 113 || c == 81)
+                    {
+                        echo();
+                        clear();
+                        return 0;
+                    }
                     clear();
                     index = 1;
                     echo();

@@ -156,7 +156,6 @@ aave-yvault
 aave-zrx
 aave-zrx-v1
 abachi
-abcc-token
 abc-floor-index
 abcmeta
 abel-finance
@@ -177,6 +176,7 @@ acetoken
 acet-token
 ac-exchange-token
 achain
+acid
 acknoledger
 ac-milan-fan-token
 acoconut
@@ -209,7 +209,6 @@ add-xyz-new
 adex
 ad-flex-token
 aditus
-admonkey
 ado-network
 adonis-2
 adora-token
@@ -356,6 +355,7 @@ algostable
 algostake
 alibabacoin
 alibaba-tok
+alicenet
 alien-chicken-farm
 alienfi
 alien-inu
@@ -420,7 +420,6 @@ altered-state-token
 alternatemoney
 altfins
 altfolio
-altimatum
 alt-markets
 altrucoin-2
 altswitch
@@ -442,7 +441,6 @@ amazy
 amazy-move-token
 amber
 ambire-wallet
-amc-entertain
 amc-fight-night
 amdg-token
 amepay
@@ -603,7 +601,6 @@ arc
 arcade2earn
 arcade-canine
 arcade-kingdoms
-arcadenetwork
 arcadeum
 arcadium
 arcblock
@@ -762,7 +759,6 @@ athos-finance
 athos-finance-usd
 atlantis
 atlantis-coin
-atlantis-finance
 atlantis-loans
 atlantis-loans
 atlantis-metaverse
@@ -807,7 +803,6 @@ aurora-token
 aurory
 aurusx
 ausdc
-austr
 austr
 authencity
 auto
@@ -1086,6 +1081,7 @@ beholder
 bela
 beldex
 belecx-protocol
+belifex
 bella-protocol
 bellcoin
 belrium
@@ -1104,7 +1100,6 @@ bent-finance
 benzene
 bep20-leo
 bepay
-bepis
 bepro-network
 bergerdoge
 bermuda
@@ -1282,6 +1277,7 @@ bitcointry-token
 bitcoin-ultra
 bitcoinv
 bitcoin-vault
+bitcoinvb
 bitcoinx
 bitcoinx-2
 bitcoinz
@@ -1359,6 +1355,7 @@ blackcoin
 black-diamond
 black-dragon-
 blackdragon-token
+black-eyed-dragon
 blackhat-coin
 blackhole-protocol
 blackpearl-chain
@@ -1390,9 +1387,7 @@ blockaura
 blockbank
 blockbase
 blockblend
-blockburn
 blockcdn
-blockcha
 blockcha
 blockchain-bets
 blockchain-brawlers
@@ -1531,7 +1526,6 @@ boo
 boo-finance
 boo-mirrorworld
 boop
-boosted-finance
 boosted-lusd
 booster
 bora
@@ -1756,7 +1750,8 @@ canto-shib
 cantosino-
 canvas-n-glr
 cap
-cap
+capapult
+capital-
 capital-x-cell
 cappasity
 capricorn
@@ -1815,6 +1810,7 @@ cat-cat-token
 catceo
 catch-up
 catchy
+catcoin-bsc
 catcoin-cash
 catcoin-token
 catecoin
@@ -1851,7 +1847,6 @@ cebiolabs
 cedars
 ceek
 ceji
-celcoin
 celeb
 celer-network
 celery
@@ -1956,7 +1951,6 @@ cheqd-network
 cherish
 cherry-network
 cherryswap
-cherry-token
 chesscoin-0-32
 chew
 chex-token
@@ -2233,6 +2227,7 @@ cordium
 core
 coredao
 coredaoorg
+core-id
 corestarter
 coreto
 coreum
@@ -2263,8 +2258,6 @@ cost-coin
 coti
 cotrader
 cougar-token
-council-of-apes
-counos-coin
 counosx
 counterparty
 couponbay
@@ -2615,7 +2608,6 @@ dappnode
 dappradar
 dappstore
 dappsy
-daps-token
 darcmatter-coin
 dar-dex-token
 darenft
@@ -2676,7 +2668,6 @@ dcoin-token
 d-community
 dcomy
 dcoreum
-dddx-protocol
 d-drops
 dead-knight
 deadpxlz
@@ -2714,8 +2705,6 @@ decentralized-usd
 decentralized-vul
 decentraweb
 decentrawood
-decentsol
-dechart
 decimal
 decimated
 decode-coin
@@ -2833,7 +2822,6 @@ delta-
 deltafi
 delta-financial
 deltaflare
-deltaflip
 deltahub-community
 delta-theta
 delysium
@@ -2878,6 +2866,7 @@ devita-global
 devolution
 devour-2
 dev-protocol
+devvio
 dexa-coin
 dexalot
 dexbrowser
@@ -2943,7 +2932,6 @@ digihealth
 digimetaverse
 digimoney
 digimon-rabbit
-digipad
 digiswap
 digital-
 digitalbits
@@ -2993,7 +2981,6 @@ divergence-protocol
 diversified-staked-
 divi
 diviner-protocol
-divs
 diyarbekirspor
 djed
 dkargo
@@ -3265,7 +3252,6 @@ earncraft
 earndefi
 earnguild
 earnx-v2
-earnytv
 earnzcoin
 earthbyt
 earthfund
@@ -3472,6 +3458,7 @@ equalizer-dex
 equilibre
 equilibrium
 equilibrium-eosdt
+equilibrium-excha
 equilibrium-token
 equinox
 era
@@ -3573,7 +3560,6 @@ etwinfinity
 etxinfinity
 eub-chain
 euler
-euler-tools
 euno
 euphoria-2
 euro-coin
@@ -3604,7 +3590,6 @@ eversafu
 eversafuv2
 everscale
 everstart
-everswap
 everton-fan-token
 everyape-bsc
 everycoin
@@ -3637,7 +3622,6 @@ exenpay-token
 exentoken
 exmoc
 exmo-coin
-exnetwork-token
 exobots
 exodusext
 exohood
@@ -3725,7 +3709,6 @@ farmers-world-wood
 farming-paradise
 farmland-protocol
 farm-planet
-farm-skylines
 farms-of-ryoshi
 fashion-coin
 fasst
@@ -3836,7 +3819,6 @@ fisco
 fish-crypto
 fistbump
 fitmax
-fitmin
 fitmint
 fitr-me
 fitr-social-token
@@ -3848,7 +3830,6 @@ flag-network
 flamengo-fan-token
 flamingghost
 flamingo-finance
-flappyrats
 flare-finance
 flare-networks
 flare-token
@@ -3904,10 +3885,8 @@ flux-token
 flux-usdc
 flycoin-fly
 flypaper
-flype-dao
 flypme
 fmoney-finance
-fnb-protocol
 fncy
 fndz-token
 fnkcom
@@ -4123,6 +4102,7 @@ gamer-arena
 gamercoin
 gamerse
 gamesafe
+games-for-a-living
 gamespad
 game-stake
 gamestar-exchange
@@ -4143,7 +4123,6 @@ gamingshiba
 gaming-stars
 gamium
 gami-world
-gamma
 gamma-strategies
 gammaswap
 gamyfi-token
@@ -4154,7 +4133,6 @@ gapcoin
 garbi-protocol
 gard
 gari-network
-garlic
 garlicoin
 gary
 gas
@@ -4171,7 +4149,6 @@ gax-liquid
 gazetv
 gazian
 gcn-coin
-gdoge-finance
 gdrt
 gdx-token
 gear
@@ -4206,7 +4183,6 @@ genaro-network
 genart
 gencle
 gene
-genebank-token
 generaitiv
 generation
 genesis-defi
@@ -4309,7 +4285,6 @@ glove
 glow
 glow
 gm
-gmcoin
 gmcoin-2
 gmd-protocol
 gmsol
@@ -4513,7 +4488,6 @@ gyen
 gym-ai
 gym-network
 gyro
-gyroscope
 h2finance
 h2o
 h2o-dao
@@ -4526,7 +4500,6 @@ hackenai
 hackerlabs-dao
 hackspace-capital
 hades
-hai-g
 haino-2
 haki-token
 hakka-finance
@@ -4649,7 +4622,6 @@ heptafranc
 hera-finance
 herbalist-token
 herbee
-heres
 herity-network
 hermes-dao
 hermes-protocol
@@ -4776,7 +4748,6 @@ hondaiscoin
 honest-mining
 honey
 honeybee
-honeycomb-2
 honey-deluxe
 honeyfarm-finance
 honey-finance
@@ -4922,6 +4893,7 @@ ibuffer-token
 icarus-network
 ic-drip-token
 icebreak-r
+icecream
 icecream-finance
 icel-idman-yurdu
 ice-token
@@ -5114,7 +5086,6 @@ intexcoin
 intucoin
 inu
 inu-inu
-inu-jum
 inuko-finance
 inusanity
 inu-token
@@ -5246,7 +5217,6 @@ jet
 jetcoin
 jetoken
 jetset
-jexchange
 jfin-coin
 jigen
 jigsaw
@@ -5315,6 +5285,7 @@ justmoney-2
 just-stablecoin
 juventus-fan-token
 k21
+k9
 kaafila
 kabosu
 kabosu-inu
@@ -5349,7 +5320,6 @@ kanga-exchange
 kangal
 kanpeki
 kapital-dao
-kappa
 karastar-kara
 karastar-umy
 karbo
@@ -5449,7 +5419,6 @@ kintsugi-btc
 kira
 kira-network
 kirobo
-kishiburno
 kishimoto
 kishimoto-inu
 kishu-inu
@@ -5544,7 +5513,6 @@ kripto
 kripto
 krogan
 kromatika
-krook-coin
 krown
 kryll
 kryptobellion
@@ -5635,7 +5603,6 @@ launchblock
 launchpool
 launchverse
 launchwall
-launchzone
 laurus-coin
 lavaswap
 lavax-labs
@@ -5695,7 +5662,6 @@ leopard
 leo-token
 lepasa
 leprechaun-finance
-lepricon
 leslar-metaverse
 letcoinshop
 lethean
@@ -6014,7 +5980,6 @@ mainframe
 mainstrea
 maison-capital
 maker
-makes
 makiswap
 malgo-finance
 malinka
@@ -6207,6 +6172,7 @@ mega-protocol
 megashibazilla
 megatech
 megatoken
+megaton-finance
 megaweapon
 megaworld
 meh
@@ -6280,7 +6246,6 @@ metablackout
 metabolic
 metabomb
 metabrands
-metabridge
 meta-bsc
 metabullrun
 metaburst
@@ -6303,7 +6268,6 @@ metadoge-v2
 metadubai
 metaelfland-token
 metafabric
-meta-farmer-finance
 metafastest
 metaficial-world
 metafighter
@@ -6391,7 +6355,6 @@ metaspace
 meta-space-2045
 meta-spatial
 metaspets
-metasphere
 meta-sports
 metasportstoken
 metastocks
@@ -6705,7 +6668,6 @@ moonlift
 moonlight-metaverse
 moonlight-token
 moon-maker-protocol
-moonminer
 moon-nation-game
 moonpaw
 moonpot
@@ -6787,8 +6749,6 @@ mu-gold
 mu-inu
 multichain
 multi-chai
-multi-farm-capital
-multigame
 multipad
 multiplanetary-inus
 multiplier-bsc
@@ -6919,7 +6879,6 @@ nelore-coin
 nem
 nemesis
 nemesis-dao
-nemesis-wea
 nemo
 neo
 neofi
@@ -6999,7 +6958,6 @@ nextype-finance
 nexum
 nexus
 nexus-asa
-nexus-bet
 nexus-blu
 nexus-dubai
 nexus-gover
@@ -7438,7 +7396,6 @@ osmiumcoin
 osmosis
 otcbtc-token
 otherdao
-otium-technologies
 otocash
 otterclam
 otter-finance
@@ -7620,6 +7577,7 @@ pegaxy-stone
 pegazus-finance
 pegnet
 pele-network
+pembrock
 pencil-dao
 pendle
 pendulum-chain
@@ -7733,7 +7691,6 @@ pirate-chain
 piratecoin
 pirate-dice
 piratera
-piratesking
 pirate-x-pirate
 pirichain
 piston
@@ -7753,7 +7710,6 @@ pixiaai
 pixie
 pixiu-finance
 pixl-coin-2
-pixls-vault-nftx
 pizza-game
 pizza-nft
 pizza-pug-coin
@@ -7844,7 +7800,6 @@ point-network
 pointpay
 poison-finance
 pokedx
-pokelon
 poken
 pokeplay-token
 pokerfi
@@ -7896,7 +7851,6 @@ polygen
 polygod
 polygold
 polygon-babydoge
-polygon-ecosyste
 polygonfarm-finance
 polygon-hbd
 polygon-hive
@@ -8000,7 +7954,6 @@ power-vault
 powpad
 powsea
 powswap
-pqbert
 prcy-coin
 predictcoin
 prelax
@@ -8092,7 +8045,6 @@ pstake-finance
 pstake-staked-bnb
 psyche
 psycho-doge
-psy-coin
 psyoptions
 pterosaur-finance
 ptokens-btc
@@ -8155,7 +8107,6 @@ pyromatic
 pyrrho-defi
 q2
 qanplatform
-qao
 qash
 qatar
 qatargrow
@@ -8192,7 +8143,6 @@ quadrans
 quadrant-protocol
 quai-dao
 quai-network
-quannabu
 quantfury
 quantic
 quantland
@@ -8212,7 +8162,6 @@ quebecoin
 questra-finance
 quick
 quickchart
-quick-mining
 quickswap
 quickx-protocol
 quidax
@@ -8234,6 +8183,7 @@ rabbit-finance
 rabbit-halloween
 rabbitking
 rabbitswap
+rabbit-wallet
 rabity-finance
 rabona
 rac
@@ -8276,6 +8226,7 @@ rally-solana
 ramestta
 ramifi
 ramp
+ramses-exchange
 ranbased
 random
 rangers-fan-token
@@ -8344,7 +8295,6 @@ rebus
 recast1
 recession-coin
 recharge
-recharge-finance
 recoverydao
 recovery-ri
 recycle-x
@@ -8419,7 +8369,6 @@ retawars-goldrose-t
 reth
 reth2
 retrocade
-retromoon
 retsuko
 rev3al
 revain
@@ -8459,7 +8408,6 @@ richierich-coin
 richochet
 richquack
 rich-santa
-rickmortydoxx
 ricnatum
 ride_finance
 ridge
@@ -8474,7 +8422,6 @@ rikkei-finance
 rillafi
 rimaunangis
 rin-finance-coin
-ring
 ring-financial
 rio-defi
 riot-racers
@@ -8536,6 +8483,7 @@ roge
 rogin-ai
 rogue-coin
 roima-inc
+roko-network
 rollbit-coin
 rollium
 rome
@@ -8552,6 +8500,7 @@ rope
 rope-token
 ror-universe
 rose
+rose-finance
 roseon-finance
 rotharium
 rottoken
@@ -8611,7 +8560,6 @@ saddle-finance
 safcoin
 safe-anwang
 safe-baby-shiba
-safebitcoin
 safeblast
 safecapital
 safechaintoken
@@ -8733,9 +8681,7 @@ saunafinance-token
 savage
 savanna
 savant-ai
-saveanimal
 save-baby-doge
-savebritney
 savedroid
 saveplanetearth
 savetheworld
@@ -8986,7 +8932,6 @@ shinchan-token
 shinedao
 shinemine
 shinji-inu
-shinjiro
 shinjiru-inu
 shinshu-inu
 shintama
@@ -9011,7 +8956,6 @@ shopne
 shopping-io-token
 short-term-t-bill
 shorty
-showcase-token
 showtime-potocol
 shping
 shrapnel
@@ -9053,7 +8997,6 @@ silverstonks
 silver-token
 simba-inu
 simba-storage-token
-simba-token
 simbcoin-swap
 simple-master
 simple-token
@@ -9102,7 +9045,6 @@ skyrim-finance
 skyup
 sky-v2
 slam-token
-slay-to-earn
 sleepearn-finance
 sleepfuture
 sleepy-shib
@@ -9444,7 +9386,6 @@ spurdex
 sqgl-vault-nftx
 squad
 square-token
-squawk
 squeeze-token
 squid-game
 squidgrow
@@ -9577,7 +9518,6 @@ stfx
 stic
 stilton
 stima
-stipend
 stkatom
 stkd-scrt
 stobox-token
@@ -9585,7 +9525,6 @@ ston
 stonedao
 stoned-a
 stone-token
-stonk-2
 stonkleague
 stopelon
 storage-
@@ -9811,7 +9750,6 @@ talkado
 talken
 tamadoge
 tama-finance
-tangent
 tangible
 tangle
 tangoswap
@@ -9907,6 +9845,7 @@ tether-eurt
 tether-gold
 tether-plen
 tether-pow
+tether-rai
 tether-usd-celer
 tether-usd-pos-w
 tether-usd-wormhole
@@ -9959,7 +9898,6 @@ the-genesis-block
 the-golden-dog
 the-graph
 the-guest-list
-theholyrogercoin
 the-husl
 the-killbox-game
 the-landlord
@@ -9975,6 +9913,7 @@ the-neko
 the-next-world-coin
 the-node
 the-open-network
+theopetra
 theos
 the-pablo-token
 the-parallel
@@ -10113,7 +10052,6 @@ tokhit
 toko
 tokocrypto
 tokpie
-toksi
 tokyo
 tokyo-au
 tokyo-inu
@@ -10162,6 +10100,7 @@ toshi-tools
 total-crypt
 totemfi
 to-the-moon-token
+totocat
 totoro-inu
 toucan-pro
 toucan-pro
@@ -10354,7 +10293,6 @@ ultrachad
 ultra-clear
 ultragate
 ultrain
-ultralpha
 ultramoc
 ultra-nft
 ultrasafe
@@ -10503,6 +10441,7 @@ usd-coin-nomad
 usd-coin-plent
 usd-coin-pos-w
 usd-coin-wormh
+usdc-rainbow-bridge
 usdc-yvault
 usdd
 usdex-stablecoin
@@ -10643,7 +10582,6 @@ versagames
 versailles-heroes
 versatile-finance
 verse-bitcoin
-version
 verso
 versoview
 vertcoin
@@ -10842,7 +10780,6 @@ wattton
 waultswap
 wavelength
 waves
-waves
 waves-ducks
 waves-enterprise
 waves-exchange
@@ -10867,6 +10804,7 @@ web3gold
 web3-inu
 web3tools
 web4-ai
+web-ai
 webcash
 webchain
 webflix
@@ -11027,7 +10965,6 @@ wrapped-astar
 wrapped-atromg8
 wrapped-avax
 wrapped-bch
-wrapped-bind
 wrapped-bitcoin
 wrapped-bitcoin
 wrapped-bitcoin
@@ -11263,7 +11200,6 @@ xtoken
 xtrabytes
 xtremcoin
 xtusd
-xuez
 xungible
 xusd
 xusd-babelfish
@@ -11345,7 +11281,6 @@ yodeswap
 yofune-nushi
 yogo
 yohero
-yohero-yhc
 yokaiswap
 yolo-cash
 yooshi
@@ -11367,7 +11302,6 @@ youves-you-
 youwho
 yoyow
 ysl
-ystar
 ytofu
 ytv-coin
 yuan-chain-coin
@@ -11382,7 +11316,6 @@ yvault-lp-ycurve
 yvboost
 yvdai
 yvs-finance
-yye-energy
 yzz
 z7dao
 zada
@@ -11513,7 +11446,6 @@ zuki-moba
 zum-token
 zuna
 zunami-protocol
-zupi-coin
 zurrency
 zusd
 zuz-protocol
@@ -11523,4 +11455,4 @@ zynecoin
 zyro
 zyrri
 zyx
-10810 unique tokens recorded
+10749 unique tokens recorded

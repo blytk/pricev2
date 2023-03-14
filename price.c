@@ -6,7 +6,7 @@
 #include <ncurses.h>
 
 int check_api_status(void);
-int fetch_data(void);
+int current_price(void);
 static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
 int historic_price(void);
 int list_of_coins(void);
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
         }
         if (user_input == 5)
         {
-            fetch_data();
+            current_price();
             goto start;
         }
         if (user_input == 6)
@@ -512,8 +512,9 @@ int search(void)
 
 
 
-int fetch_data(void)
+int current_price(void)
 {
+    repeat:
     char PRICE[15];
     
     char* token = get_input_token();
@@ -591,9 +592,13 @@ int fetch_data(void)
             double PRICE_ = atof(PRICE);           
             //printf("THE CURRENT PRICE OF %s IS $%.4f\n", token, PRICE_);
             mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token, PRICE_);
-            mvprintw(row / 2 + 2, col / 4, "Press any key to go back to the main menu");
-            getch();
-
+            mvprintw(row / 2 + 2, col / 4, "Press r to check the current price of another token");
+            mvprintw(row / 2 + 4, col / 4, "Press any other key to go back to the main menu");
+            char c = getch();
+            if (c == 114 || c == 82)
+            {
+                goto repeat;
+            }
             //for (int i = 0; i < strlen(PRICE); i++)
             //{
             //    PRICE[i] = "";

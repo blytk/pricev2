@@ -58,6 +58,7 @@ struct MemoryStruct {
 
 int row, col;
 
+
 int main(int argc, char* argv[])
 {
     //print_title();
@@ -589,7 +590,23 @@ int current_price(void)
             //PRICE = atof(PRICE);
             //HERE WE PRINT THE FINAL RESULT
             clear();
-            double PRICE_ = atof(PRICE);           
+            double PRICE_ = atof(PRICE);    
+
+            // If bitcoin's current price is checked, we update the last_btc_price and store it in a file for future use
+            if (strcmp(token, "bitcoin") == 0)
+            {                
+                //
+                FILE *file;
+                file = fopen("last_btc_price.txt", "w");
+                if (file == NULL)
+                {
+                    return 1;
+                }
+                fprintf(file, PRICE);
+                fclose(file);
+            }
+
+
             //printf("THE CURRENT PRICE OF %s IS $%.4f\n", token, PRICE_);
             mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token, PRICE_);
             mvprintw(row / 2 + 2, col / 4, "Press r to check the current price of another token");
@@ -708,7 +725,26 @@ int get_input(void)
     mvprintw(14, (col-strlen(exit_msg))/2, "%s", exit_msg);
     attroff(A_UNDERLINE);
 
+    FILE *file;
+    file = fopen("last_btc_price.txt", "r");
+    if (file == NULL)
+    {
+        return 1;
+    }
+    char *buffer;
+    buffer = malloc(sizeof(char) * 64);
+    char *result;
+    result = fgets(buffer, 25, file);
+    printf("%s\n", result);
+    char last_btc_price_msg[128];
+    sprintf(last_btc_price_msg, "Last BTC price checked was: %s\n", result);
+    printf("%s\n", last_btc_price_msg);
+    mvprintw(18, (col-strlen(last_btc_price_msg))/2 /10, "%s", last_btc_price_msg);
+    attroff(A_UNDERLINE);
+    free(buffer);
+    fclose(file);
 
+    
 
     startx = (40 - WIDTH) / 2;
     starty = (20 - HEIGHT) / 2;

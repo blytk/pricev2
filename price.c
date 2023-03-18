@@ -11,6 +11,7 @@ static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
 int historic_price(void);
 int list_of_coins(void);
 int search(void);
+int btc_price(void);
 
 int get_input(void);
 int lowercase(char* word);
@@ -18,6 +19,7 @@ char* get_input_date(void);
 char* get_input_token(void);
 char* get_input_search(void);
 int print_title(void);
+
 
 #define WIDTH 24
 #define HEIGHT 10
@@ -33,6 +35,7 @@ char historic_msg[] = "CHECK the price from a specific date";
 char search_msg[] = "SEARCH for possible matches";
 char exit_msg[] = "EXIT the program";
 char token_msg[] = "CHECK the current price of a token";
+char btc_price_msg[] = "BTC current price";
 
 char* choices[] = {
     "CHECK API",
@@ -40,6 +43,7 @@ char* choices[] = {
     "CHECK FROM DATE",
     "SEARCH",
     "CHECK CURRENT PRICE",
+    "CHECK BTC PRICE",
     "EXIT",
 };
 int n_choices = sizeof(choices) / sizeof(char *);
@@ -99,6 +103,11 @@ int main(int argc, char* argv[])
             goto start;
         }
         if (user_input == 6)
+        {
+            btc_price();
+            goto start;
+        }
+        if (user_input == 7)
         {
             clear();
             endwin();
@@ -639,8 +648,98 @@ int current_price(void)
     curl_easy_cleanup(handle);
     free(chunk.memory);
     curl_global_cleanup();
-    return 5;   
+    return 0;   
 }
+
+int btc_price(void)
+{
+    repeat:
+    char PRICE[15];
+
+    char* token = "bitcoin";
+    char *url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
+
+    CURL *handle = curl_easy_init();
+    CURLcode response;
+
+    struct MemoryStruct chunk;
+
+    chunk.memory = malloc(1);
+    chunk.size = 0;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    curl_easy_setopt(handle, CURLOPT_URL, url);
+    curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+    curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)&chunk);
+    curl_easy_setopt(handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+    response = curl_easy_perform(handle);
+    if (response != CURLE_OK)
+    {
+        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(response));
+        curl_easy_cleanup(handle);
+        free(chunk.memory);
+        curl_global_cleanup();
+        mvprintw(row / 2, col / 4, "Couldn't find the token you are looking for");
+        sleep(2);
+        return 1;
+    }
+    else
+    {
+        unsigned long cs = (unsigned long)chunk.size;
+        if (cs > 15)
+        {
+            for (int i = 0, k = 0; i < strlen(chunk.memory); i++)
+            {
+                if ((chunk.memory[i] > 47 && chunk.memory[i] < 58) || chunk.memory[i] == 46)
+                {
+                    PRICE[k] = chunk.memory[i];
+                    //printf("%c\n", PRICE[k]);
+                    k = k + 1;
+                }
+            }
+
+            
+            clear();
+            double PRICE_ = atof(PRICE);    
+
+            FILE *file;
+            file = fopen("last_btc_price.txt", "w");
+            if (file == NULL)
+            {
+                return 1;
+            }
+            fprintf(file, PRICE);
+            fclose(file);
+        
+
+            mvprintw(row / 2, col / 4, "THE CURRENT PRICE OF %s IS $%.4f", token, PRICE_);
+            mvprintw(row / 2 + 2, col / 4, "Press r to refresh");
+            mvprintw(row / 2 + 4, col / 4, "Press any other key to go back to the main menu");
+            char c = getch();
+            if (c == 114 || c == 82)
+            {
+                goto repeat;
+            }
+            
+        
+        }
+        else
+        {
+            clear();
+            mvprintw(row / 2, col / 4, "WE HAVEN'T FOUND THE TOKEN YOU WERE LOOKING FOR, PLEASE TRY AGAIN");
+            refresh();
+            sleep(5);
+        }
+    }
+    curl_easy_cleanup(handle);
+    free(chunk.memory);
+    curl_global_cleanup();
+    return 0;  
+}
+
+
 
 static size_t
 WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -717,14 +816,19 @@ int get_input(void)
     mvprintw(10, (col-strlen(search_msg))/2, "%s", search_msg);
     attroff(COLOR_PAIR(4));
 
-    attron(A_BOLD);
+    attron(COLOR_PAIR(1));
     mvprintw(12, (col-strlen(token_msg))/2, "%s", token_msg);
+    attroff(COLOR_PAIR(1));
+
+    attron(COLOR_PAIR(4));
+    mvprintw(14, (col-strlen(btc_price_msg))/2, "%s", btc_price_msg);
+    attroff(COLOR_PAIR(4));
+
+    attron(A_BOLD);
+    mvprintw(16, (col-strlen(exit_msg))/2, "%s", exit_msg);
     attroff(A_BOLD);
 
-    attron(A_UNDERLINE);
-    mvprintw(14, (col-strlen(exit_msg))/2, "%s", exit_msg);
-    attroff(A_UNDERLINE);
-
+ 
     FILE *file;
     file = fopen("last_btc_price.txt", "r");
     if (file == NULL)
@@ -737,7 +841,7 @@ int get_input(void)
     result = fgets(buffer, 25, file);
     printf("%s\n", result);
     char last_btc_price_msg[128];
-    sprintf(last_btc_price_msg, "Last BTC price checked was: %s\n", result);
+    sprintf(last_btc_price_msg, "Last BTC price checked was: $%s\n", result);
     printf("%s\n", last_btc_price_msg);
     mvprintw(18, (col-strlen(last_btc_price_msg))/2 /10, "%s", last_btc_price_msg);
     attroff(A_UNDERLINE);

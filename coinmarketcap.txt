@@ -1,1 +1,0 @@
-coinmarketcap API KEY 94e4e210-e65a-48fd-88ec-d9f207da60eb

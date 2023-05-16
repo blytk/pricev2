@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     while(1)
     {
 
-        start:
+        start:;
         int user_input;
         user_input = get_input();
         if (user_input == 1)
@@ -524,7 +524,7 @@ int search(void)
 
 int current_price(void)
 {
-    repeat:
+    repeat:;
     char PRICE[15];
     
     char* token = get_input_token();
@@ -653,7 +653,7 @@ int current_price(void)
 
 int btc_price(void)
 {
-    repeat:
+    repeat:;
     char PRICE[15];
 
     char* token = "bitcoin";

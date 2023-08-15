@@ -22,7 +22,7 @@ int print_title(void);
 
 
 #define WIDTH 24
-#define HEIGHT 10
+#define HEIGHT 16
 
 int startx = 0;
 int starty = 0;
@@ -843,11 +843,12 @@ int get_input(void)
 
     // Been having an issue where a couple of non printable chars have been showing on the screen, the below if statement is to get rid of them
     // This fix has been working so far, although I still don't know where those extra chars are coming from
+    // I am only interested in digits, so I have replaced isprint() with isdigit()
     if (result != NULL) {
         // Find position of first non-printable char
         for (int i = 0; i < strlen(result); i++) {
-            if (!isprint(result[i])) {
-                result[i] = '\0'; // Null-terminate the string at the first non-printable char encountered (assumes the non-printable chars will be at the end)
+            if (!isdigit(result[i])) {
+                result[i] = '\0'; // Null-terminate the string at the first non-digit char encountered (assumes the non-printable chars will be at the end)
                 break;
             }
         }
@@ -869,7 +870,7 @@ int get_input(void)
 
     menu_win = newwin(HEIGHT, WIDTH, starty, startx);
     keypad(menu_win, TRUE);
-    mvprintw(0, 0, "Use arrow keys to go up and down, Press enter to select a choice");
+    mvprintw(0, 0, "Use arrow keys to go up and down, Press enter to select an option");
     refresh();
     print_menu(menu_win, highlight);
 
@@ -1029,6 +1030,7 @@ void print_menu(WINDOW *menu_win, int highlight)
 		else
 			mvwprintw(menu_win, y, x, "%s", choices[i]);
 		++y;
+        ++y;
 	}
 	wrefresh(menu_win);
 }

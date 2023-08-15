@@ -780,6 +780,7 @@ int get_input(void)
     clear();
     //noecho();
     cbreak(); 
+    curs_set(0);
         
     if (has_colors() == FALSE)
     {
@@ -839,10 +840,23 @@ int get_input(void)
     buffer = malloc(sizeof(char) * 64);
     char *result;
     result = fgets(buffer, 25, file);
-    printf("%s\n", result);
+
+    // Been having an issue where a couple of non printable chars have been showing on the screen, the below if statement is to get rid of them
+    // This fix has been working so far, although I still don't know where those extra chars are coming from
+    if (result != NULL) {
+        // Find position of first non-printable char
+        for (int i = 0; i < strlen(result); i++) {
+            if (!isprint(result[i])) {
+                result[i] = '\0'; // Null-terminate the string at the first non-printable char encountered (assumes the non-printable chars will be at the end)
+                break;
+            }
+        }
+    }
+
+    //printf("%s", result);
     char last_btc_price_msg[128];
-    sprintf(last_btc_price_msg, "Last BTC price checked was: $%s\n", result);
-    printf("%s\n", last_btc_price_msg);
+    sprintf(last_btc_price_msg, "Last BTC price checked was: $%s", result);
+    //printf("%s\n", last_btc_price_msg);
     mvprintw(18, (col-strlen(last_btc_price_msg))/2 /10, "%s", last_btc_price_msg);
     attroff(A_UNDERLINE);
     free(buffer);

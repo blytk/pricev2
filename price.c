@@ -1,9 +1,20 @@
+/*
+
+Author: Yago Miguéns Suárez
+Date: 01-04-2023
+
+This command line utility allows the user to check the price of different cryptocurrency tokens, using the coingecko API
+It uses the libraries ncurses for the interface and libcurl for the HTTP requests
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
 #include <ctype.h>
 #include <ncurses.h>
+#include <unistd.h>
 
 int check_api_status(void);
 int current_price(void);
@@ -20,15 +31,17 @@ char* get_input_token(void);
 char* get_input_search(void);
 int print_title(void);
 
-
+// WIDTH and HEIGHT will be used by ncurses to manage the size of the interface
 #define WIDTH 24
 #define HEIGHT 16
 
+// Variables for ncurses
 int startx = 0;
 int starty = 0;
 
 int row, col;
 
+// Menu choices description
 char check_msg[] = "CHECK the status of the API";
 char list_msg[] = "DOWNLOAD a 'list.txt' file with a list of all the available tokens";
 char historic_msg[] = "CHECK the price from a specific date";
@@ -37,6 +50,7 @@ char exit_msg[] = "EXIT the program";
 char token_msg[] = "CHECK the current price of a token";
 char btc_price_msg[] = "BTC current price";
 
+// Menu choices (ncurses)
 char* choices[] = {
     "CHECK API",
     "DOWNLOAD LIST",
@@ -49,12 +63,13 @@ char* choices[] = {
 int n_choices = sizeof(choices) / sizeof(char *);
 void print_menu(WINDOW *menu_win, int highlight);
 
+// Some char variables
 char user_input[30];
 char date[20];
 char token[30];
 char substring_to_search_for[64];
 
-
+// Struct for libcurl, to copy the HTTP response into memory mainly
 struct MemoryStruct {
     char* memory;
     size_t size;
@@ -120,7 +135,8 @@ int main(int argc, char* argv[])
     return 1;
 }
 
-
+// check_api_status() returns 1 if the API is not working correctly, 0 if it works
+// It will print a success or failure message on the terminal
 int check_api_status(void)
 {
     //I need to ping the api
@@ -190,7 +206,7 @@ int check_api_status(void)
     return 0;
 }
 
-
+// list_of_coins() writes a file named "list.txt" in the main folder with all the coins available through the API. Returns 1 if there is an error.
 int list_of_coins(void)
 {
     CURL *handle = curl_easy_init();
@@ -328,7 +344,7 @@ int list_of_coins(void)
     return 0;
 }
 
-
+// historic_price() implements the functionality to search the price of a token at a specific date.
 int historic_price(void)
 {
     curl_global_init(CURL_GLOBAL_ALL);
@@ -345,7 +361,7 @@ int historic_price(void)
     char *token;
     token = get_input_token();
 
-    if (token == 1)
+    if (token == "1")
     {
         return 1;
     }
@@ -452,7 +468,7 @@ int historic_price(void)
 
 }
 
-
+// search() helps the user find available tokens for lookup (it needs list.txt to work)
 int search(void)
 {
     FILE *file;
@@ -521,14 +537,14 @@ int search(void)
 }
 
 
-
+// current_price allows the user to search for the current price of a token
 int current_price(void)
 {
     repeat:;
     char PRICE[15];
     
     char* token = get_input_token();
-    if (token == 1)
+    if (token == "1")
     {
         return 1;
     }
@@ -651,6 +667,7 @@ int current_price(void)
     return 0;   
 }
 
+// btc_price() allows the user to check the current btc price
 int btc_price(void)
 {
     repeat:;
@@ -766,8 +783,6 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 ///HELPERS
 /// HELPERS
 /////////////////
-
-
 
 int get_input(void)
 {
@@ -908,7 +923,7 @@ int get_input(void)
         return choice;
 }
    
-     
+// Get a date from the user
 char* get_input_date(void)
 {
     do 
@@ -930,6 +945,7 @@ char* get_input_date(void)
     return date;
 }
 
+// Get a token from the user
 char* get_input_token(void)
 {
     clear();
@@ -966,10 +982,10 @@ char* get_input_token(void)
     refresh();
     sleep(3);
     
-    return 1;
+    return "1";
 }
 
-
+// Get a substring from the user in order to find tokens that include that substring
 char* get_input_search(void)
 {
     
@@ -998,7 +1014,8 @@ int lowercase(char* word)
     return 0;
 }
 
-
+// Initial header, not used in the ncurses version
+/*
 int print_title(void)
 {
     printf("\n");
@@ -1013,7 +1030,9 @@ int print_title(void)
     printf("*    |__/            |__/  |__/       |______/       \\______/       |________/\n");
     printf("*                                                                            \n");
 }
+*/
 
+// Initialize ncurses menu
 void print_menu(WINDOW *menu_win, int highlight)
 {
 	int x, y, i;	

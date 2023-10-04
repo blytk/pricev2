@@ -11,8 +11,8 @@ It uses the libraries ncurses for the interface and libcurl for the HTTP request
 /* STUFF TO FIX */
 // The program should run even if there are not last_btc_price.txt and list.txt //
 // Add logic to create them if they do not exist on first run //
-// THe program does not terminate when pressing ctrl+c while expecting user input???????
-
+// The program does not terminate when pressing ctrl+c while expecting user input???????
+// Maybe I can make the menu responsive to terminal screen size somehow
 
 #include <stdio.h>
 #include <stdlib.h>

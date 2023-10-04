@@ -8,6 +8,12 @@ It uses the libraries ncurses for the interface and libcurl for the HTTP request
 
 */
 
+/* STUFF TO FIX */
+// The program should run even if there are not last_btc_price.txt and list.txt //
+// Add logic to create them if they do not exist on first run //
+// THe program does not terminate when pressing ctrl+c while expecting user input???????
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,7 +90,6 @@ int main(int argc, char* argv[])
     //sleep(2);
 
     /* Initialize only SDL Audio on default device */
-       
     while(1)
     {
 
